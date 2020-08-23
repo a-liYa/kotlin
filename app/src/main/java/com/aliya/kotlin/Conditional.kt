@@ -24,6 +24,7 @@ fun whenShow(obj: Any): String =
             // 代码块，这里可以做一些运算，最后一行为返回值
             "2..6"
         }
+        in 100..200 -> "$obj in 100..200"
         "Hello" -> "Greeting"
         is Long -> "Long"
         !is String -> "Not a string"
