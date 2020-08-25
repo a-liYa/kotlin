@@ -21,8 +21,8 @@ fun main() {
      */
 
     // 下划线_ 忽略name属性
-    val (_, _age, _grade) = student
-    println("I'm $_age years old, I get $_grade score")
+    val (_, age1, grade1) = student
+    println("I'm $age1 years old, I get $grade1 score")
 
 }
 
