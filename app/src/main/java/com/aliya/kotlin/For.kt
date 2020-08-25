@@ -11,11 +11,19 @@ fun main() {
 
     labelShow()
 
+    // 遍历集合
     var items  = listOf<String>("李四", "张三", "王五")
     for (item in items) {
         println(item)
     }
 
+    // forEach遍历
+    /*
+        _Collections.kt
+        public inline fun <T> Iterable<T>.forEach(action: (T) -> Unit): Unit {
+            for (element in this) action(element)
+        }
+     */
     items.forEach {
         println(it)
     }
@@ -39,6 +47,7 @@ fun labelShow() {
                 break@label // break i循环
             }
         }
-
     }
+
+    println("end")
 }
