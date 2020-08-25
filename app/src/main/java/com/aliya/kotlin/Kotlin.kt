@@ -1,25 +1,25 @@
-package com.aliya.kotlin
-
-/**
- * Kotlin
- *
- * @author a_liYa
- * @date 2020/8/20 23:27.
- *
+/*
+ Kotlin.kt 为顶层文件，内部的顶层函数反编译成的Java的容器类名为 顶层文件名+"Kt"。
+ 自定义 @file: JvmName("自定义类名")，在package声明的前面。
  */
+@file: JvmName("JvmKotlinKt")
+package com.aliya.kotlin
 
 /*
     这是一个块注释
 */
-
 // 这是一个行注释
 class Kotlin {
     val name: String = "kotlin"
 }
 
+/*
+顶层文件
+    顶层变量
+    顶层函数
+ */
 
 fun main() {
-
 
     // var <标识符> [: <类型>] = <初始化值> // 可变
 
