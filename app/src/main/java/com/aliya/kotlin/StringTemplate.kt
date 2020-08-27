@@ -11,7 +11,7 @@ fun main() {
 
     stringTemplate()
 
-    // 支持三个引号 """ 扩起来的字符串，支持多行字符串
+    // 支持三个引号 """ 扩起来的原始字符串，支持多行字符串
     // --- 自己不用关系 \n 换行
     val infoMesage = """
         AAAAAAAAAAA
