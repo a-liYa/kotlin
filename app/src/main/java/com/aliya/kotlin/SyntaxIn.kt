@@ -1,7 +1,7 @@
 package com.aliya.kotlin
 
 /**
- * Syntax In
+ * Syntax in - 语法 in
  *
  * @author a_liYa
  * @date 2020/8/23 22:41.
