@@ -1,7 +1,7 @@
 package com.aliya.kotlin
 
 /**
- * Compare
+ * Compare 比较示例
  *
  * @author a_liYa
  * @date 2020/8/23 22:53.

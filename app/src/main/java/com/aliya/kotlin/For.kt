@@ -9,8 +9,6 @@ package com.aliya.kotlin
  */
 fun main() {
 
-    labelShow()
-
     // 遍历集合
     var items  = listOf<String>("李四", "张三", "王五")
     for (item in items) {
@@ -32,22 +30,4 @@ fun main() {
         println("下标：$index,  对应的值：${items[index]}")
     }
 
-}
-
-fun labelShow() {
-
-    // 自定义标签
-    label@ for (i in 1..5) {
-        for (j in 1..5) {
-            if (i == 3) break // break j循环
-
-            println("i:$i, j:$j")
-
-            if (i == 5) {
-                break@label // break i循环
-            }
-        }
-    }
-
-    println("end")
 }
