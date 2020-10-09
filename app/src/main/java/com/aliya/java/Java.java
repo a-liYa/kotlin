@@ -1,5 +1,7 @@
 package com.aliya.java;
 
+import com.aliya.kotlin.Property;
+
 /**
  * Java
  *
@@ -9,6 +11,6 @@ package com.aliya.java;
 class Java {
 
     void method(int... value) {
-
+        new Property();
     }
 }

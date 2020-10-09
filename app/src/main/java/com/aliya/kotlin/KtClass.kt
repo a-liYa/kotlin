@@ -89,19 +89,27 @@ class MyView : View {
 
     constructor(ctx: Context, attrs: AttributeSet?) : this(ctx, attrs, 0)
 
-    constructor(ctx: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(ctx, attrs, defStyleAttr)
+    constructor(ctx: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        ctx,
+        attrs,
+        defStyleAttr
+    )
 }
 
 // 覆盖方法
 open class Shape {
     open val vertexCount: Int = 0
-    open fun draw() { /*……*/ }
-    fun fill() { /*……*/ }
+    open fun draw() { /*……*/
+    }
+
+    fun fill() { /*……*/
+    }
 }
 
 class Circle() : Shape() {
     // 因父类 Shape#draw open 修饰，所以可覆盖，覆盖时必须使用 override 修饰， 若想禁止子类再次覆盖，加 final 关键字
-    override fun draw() { /*……*/ }
+    override fun draw() { /*……*/
+    }
 }
 
 // 覆盖属性
@@ -111,17 +119,21 @@ open class Rectangle : Shape() {
 }
 
 // 主构造函数中覆盖属性时使用 override 关键字作为属性声明的一部分
-class Polygon(override val vertexCount: Int = 0): Shape() {
+class Polygon(override val vertexCount: Int = 0) : Shape() {
 }
 
 // 派生类中的代码可以使用 super 关键字调用其超类的函数与属性访问器的实现：
 // 在一个内部类中访问外部类的超类，可以通过由外部类名限定的 super 关键字来实现：super@Outer：
-class FilledRectangle: Rectangle() {
-    override fun draw() { /* …… */ }
+class FilledRectangle : Rectangle() {
+    override fun draw() { /* …… */
+    }
+
     val borderColor: String get() = "black"
 
     inner class Filler {
-        fun fill() { /* …… */ }
+        fun fill() { /* …… */
+        }
+
         fun drawAndFill() {
             super@FilledRectangle.draw() // 调用 Rectangle 的 draw() 实现
             fill()
@@ -131,11 +143,13 @@ class FilledRectangle: Rectangle() {
 
 
 open class Rectangle1 {
-    open fun draw() { /* …… */ }
+    open fun draw() { /* …… */
+    }
 }
 
 interface Polygon1 {
-    fun draw() { /* …… */ } // 接口成员默认就是“open”的
+    fun draw() { /* …… */
+    } // 接口成员默认就是“open”的
 }
 
 class Square() : Rectangle1(), Polygon1 {
