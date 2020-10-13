@@ -7,18 +7,28 @@ package com.aliya.kotlin
  * @date 2020/10/12 16:43.
  *
  */
-interface Base1 {
+interface BaseInterf {
     fun print()
+    fun printOther()
 }
 
-class BaseImpl(val x: Int) : Base1 {
-    override fun print() { print(x) }
+class BaseImpl(val x: Int) : BaseInterf {
+    override fun print() { println(x) }
+    override fun printOther() {
+        println("BaseImpl#printOther()")
+    }
 }
 
-class Derived1(b: Base1) : Base1 by b
+class Delegate(b: BaseInterf) : BaseInterf by b {
+    // 覆盖由委托实现的接口成员
+    override fun print() {
+        println("Delegate#print()")
+    }
+}
 
 // 类似于 代理模式
 fun main() {
     val b = BaseImpl(10)
-    Derived1(b).print()
+    Delegate(b).print() // 打印：Delegate#print()
+    Delegate(b).printOther() // 打印：BaseImpl#printOther()
 }
