@@ -1,5 +1,8 @@
 package com.aliya.kotlin
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+
 /**
  * Infix 中缀调用 - 示例
  *
@@ -7,6 +10,7 @@ package com.aliya.kotlin
  * @date 2020/8/25 15:06.
  *
  */
+@RequiresApi(Build.VERSION_CODES.N)
 fun main() {
 
     /*
