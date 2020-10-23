@@ -31,7 +31,7 @@ fun <T> Context.findOfType(clazz: Class<T>): T? {
     return base as T?
 }
 
-// 内联函数支持具体化的类型参数
+// 内联函数支持具体化的类型参数 reified
 inline fun <reified T> Context.findOfType(): T? {
     var base = this
     while (base != null && base !is T && base is ContextWrapper) {
