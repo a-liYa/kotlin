@@ -37,8 +37,8 @@ fun main() {
     println(numbers.shuffled())
 
     // 倒序
-    // 1。reversed() 函数以相反的顺序检索集合
-    // 2。asReversed()——返回相同集合实例的一个反向视图
+    // 1。reversed() 函数以相反的顺序检索集合副本
+    // 2。asReversed()——返回相同集合实例的一个反向视图，与原视图相关联
 }
 
 // 继承 Comparable 实现 compareTo() 即定义了自然排序
