@@ -37,6 +37,10 @@ fun main() {
     printDivider(" joinTo ")
 
     joinToOpt()
+
+    printDivider(" + - ")
+
+    operatorOpt()
 }
 
 /**
@@ -192,4 +196,28 @@ private fun joinToOpt() {
 
     val newNumbers = (1..100).toList()
     println(newNumbers.joinToString(limit = 10, truncated = "<...>"))
+}
+
+private fun operatorOpt() {
+
+    val numbers = listOf("one", "two", "three", "four")
+
+    // 等价
+    println(numbers + "five")
+    println(numbers.plus("five"))
+
+    // 等价
+    println(numbers - listOf("three", "four"))
+    println(numbers.minus(listOf("three", "four")))
+
+    val twoTwoList = numbers + "two"
+    println(twoTwoList - "two")         // 第二个操作数是一个元素时，移除其在原始集合中的第一次出现
+    println(twoTwoList - listOf("two")) // 第二个操作数是一个集合时，移除其元素在原始集合中的所有出现
+
+    // 广义赋值操作符 plusAssign (+=) 和 minusAssign (-=)
+    val mutableNumbers = mutableListOf("one", "two", "three", "four")
+    mutableNumbers += "five"
+    println(mutableNumbers)
+
+    // 注意 var 只读集合 通过 += 操作依然会返回一个新集合，可变集合 直接添加至该集合
 }
