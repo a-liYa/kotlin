@@ -33,7 +33,7 @@ class Empty
  * 构造函数，关键字 constructor 修饰 ，一个类可有一个主构造函数及一个或多个次构造函数
  */
 // 主构造函数，没有任何注解或者可见性修饰符时，可省略 constructor 关键字
-class Person constructor(firstName: String) { /*...*/ }
+class Person constructor(var name: String, var age: Int = 0, var city: String = "") { /*...*/ }
 
 class Person1(name: String) { /*...*/ }
 
