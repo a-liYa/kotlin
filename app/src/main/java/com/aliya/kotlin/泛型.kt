@@ -1,9 +1,10 @@
 package com.aliya.kotlin
 
-import java.util.*
-
 /**
  * 泛型 Generics
+ *
+ * Java     Producer extends Consumer super
+ * Kotlin   Producer out Consumer in
  *
  * @author a_liYa
  * @date 2020/10/10 16:50.
@@ -25,12 +26,16 @@ val boxInt = Box(1) // 1 具有类型 Int，所以编译器知道我们说的是
         类型投影
  */
 
-interface Source<out T> {
-    fun nextT(): T // 只读，为生产者
+/**
+ * 生产者
+ */
+interface Producer<out T> {
+    fun nextT(): T // 只读，生产者
+    // fun add(t: T)  // 报错
 }
 
-fun demo(strs: Source<String>) {
-    val objects: Source<Any> = strs
+fun demo(strs: Producer<String>) {
+    val objects: Producer<Any> = strs
 }
 
 interface Comparable<in T> {

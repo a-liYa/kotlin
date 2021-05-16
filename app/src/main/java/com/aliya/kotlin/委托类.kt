@@ -1,7 +1,7 @@
 package com.aliya.kotlin
 
 /**
- * 委托
+ * 委托类
  *
  * @author a_liYa
  * @date 2020/10/12 16:43.
