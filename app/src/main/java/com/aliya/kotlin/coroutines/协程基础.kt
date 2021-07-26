@@ -1,6 +1,7 @@
 package com.aliya.kotlin
 
 import kotlinx.coroutines.*
+import java.lang.Thread.sleep
 import kotlin.concurrent.thread
 
 /**
@@ -13,6 +14,16 @@ import kotlin.concurrent.thread
  *
  */
 fun main() {
+    /**
+     * 非协程环境启动协程，三种方式
+     *
+     * 1. runBlocking{} 在当前线程启动协程，并阻塞当前协程，直到其内部所有逻辑及子协程逻辑全部执行完成。
+     *
+     * 2. GlobalScope.launch{} 在子线程启动协程。
+     *
+     * 3. 实现CoroutineScope + launch{}
+     *
+     */
 
 //    coroutinesSample()
 //
@@ -28,24 +39,67 @@ fun main() {
 
 //    repeatCoroutines(10000)
 
-    runBlocking<Unit> {
-        GlobalScope.launch {
-            repeat(1000) { i ->
-                println("I'm sleeping $i ...")
-                delay(500L)
+//    runBlocking<Unit> {
+//        GlobalScope.launch {
+//            repeat(1000) { i ->
+//                println("I'm sleeping $i ...")
+//                delay(500L)
+//            }
+//        }
+//        delay(1300L) // 在延迟后退出
+//    }
+
+
+    runBlocking {
+        val endMs = System.currentTimeMillis() + 2000
+
+        async {
+            while (true) {
+                println(
+                    "async11 ${Thread.currentThread().name}，hashCode:${
+                        Thread.currentThread().hashCode()
+                    }"
+                )
+                delay(100)
+                if (System.currentTimeMillis() > endMs) break
             }
+            println(
+                "async1 ${Thread.currentThread().name}，hashCode:${
+                    Thread.currentThread().hashCode()
+                }"
+            )
         }
-        delay(1300L) // 在延迟后退出
+
+        async {
+            while (true) {
+                println(
+                    "async22 ${Thread.currentThread().name}，hashCode:${
+                        Thread.currentThread().hashCode()
+                    }"
+                )
+                sleep(100)
+                if (System.currentTimeMillis() > endMs) break
+            }
+            println(
+                "async2 ${Thread.currentThread().name}，hashCode:${
+                    Thread.currentThread().hashCode()
+                }"
+            )
+        }
     }
 }
 
 fun coroutinesSample() {
     GlobalScope.launch { // 在后台启动一个新的协程并继续
         delay(1000L) // 非阻塞的等待 1 秒钟（默认时间单位是毫秒）
-        println("World!${Thread.currentThread().name}") // 在延迟后打印输出
+        println(
+            "World!${Thread.currentThread().name}，hashCode:${
+                Thread.currentThread().hashCode()
+            }"
+        ) // 在延迟后打印输出
     }
     println("Hello,${Thread.currentThread().name}") // 协程已在等待时主线程还在继续
-    runBlocking {     // 但是这个表达式阻塞了主线程
+    runBlocking {     // 启动一个新协程，并阻塞当前线程，直到其内部及其子协程逻辑全部执行完毕
         delay(2000L)  // ……我们延迟 2 秒来保证 JVM 的存活
     }
 }

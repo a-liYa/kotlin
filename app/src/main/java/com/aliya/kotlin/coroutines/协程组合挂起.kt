@@ -13,7 +13,7 @@ import kotlin.system.measureTimeMillis
  */
 fun main() {
 
-    // 循序调用
+    // 顺序调用
     runBlocking<Unit> {
         val time = measureTimeMillis {
             val one = doSomethingUsefulOne()

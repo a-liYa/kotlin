@@ -18,14 +18,18 @@ package com.aliya.kotlin
 
 fun main() {
     /*
-        构造序列的方式
+     * 构造序列的方式
      */
 
     // sequenceOf() 函数
     var numbersSequence = sequenceOf("four", "three", "two", "one")
+    println(numbersSequence.toList())
+    // 打印结果 [four, three, two, one]
 
     // asSequence()
     numbersSequence = listOf("one", "two", "three", "four").asSequence()
+    println(numbersSequence.toList())
+    // 打印结果 [one, two, three, four]
 
     // 参数 seed 表示第一个元素
     var oddNumbers = generateSequence(1) { it + 2 } // `it` 是上一个元素
@@ -44,21 +48,22 @@ fun main() {
         yieldAll(listOf(3, 5))
         yieldAll(generateSequence(7) { it + 2 })
     }
-    println(oddNumbers.take(5).toList())
+    println(oddNumbers.take(10).toList())
 
     // 对比区别, 参考日志打印
+    println("\nwordIterable\n")
     wordIterable()
-    println("\n\n")
+    println("\nwordSequence\n")
     wordSequence()
 }
 
 fun wordIterable() {
     val words = "The quick brown fox jumps over the lazy dog".split(" ")
     val lengthsList = words.filter { println("filter: $it"); it.length > 3 }
-        .map { println("length: ${it.length}"); it.length }
+        .map { println("map length: ${it.length}"); it.length }
         .take(4)
 
-    println("Lengths of first 4 words longer than 3 chars:")
+    println("字符数超过3的前4个单词:")
     println(lengthsList)
 }
 
@@ -68,7 +73,7 @@ fun wordSequence() {
     val wordsSequence = words.asSequence()
 
     val lengthsSequence = wordsSequence.filter { println("filter: $it"); it.length > 3 }
-        .map { println("length: ${it.length}"); it.length }
+        .map { println("map length: ${it.length}"); it.length }
         .take(4)
 
     println("Lengths of first 4 words longer than 3 chars")
