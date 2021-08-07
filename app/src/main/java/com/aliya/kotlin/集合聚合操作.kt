@@ -13,8 +13,8 @@ fun main() {
     val numbers = listOf(6, 42, 10, 4)
 
     println("Count: ${numbers.count()}")    // 返回集合中元素的数量
-    println("Max: ${numbers.max()}")        // 返回最大的元素
-    println("Min: ${numbers.min()}")        // 返回最小的元素
+    println("Max: ${numbers.maxOrNull()}")        // 返回最大的元素
+    println("Min: ${numbers.minOrNull()}")        // 返回最小的元素
     println("Average: ${numbers.average()}") // 返回数字集合中元素的平均值
     println("Sum: ${numbers.sum()}")        // 返回数字集合中元素的总和
 
@@ -22,11 +22,11 @@ fun main() {
         maxBy()/minBy() 接受一个选择器函数并返回使选择器返回最大或最小值的元素。
         maxWith()/minWith() 接受一个 Comparator 对象并且根据此 Comparator 对象返回最大或最小元素。
      */
-    val min3Remainder = numbers.minBy { it % 3 }
+    val min3Remainder = numbers.minByOrNull { it % 3 }
     println(min3Remainder)
 
     val strings = listOf("one", "two", "three", "four")
-    val longestString = strings.maxWith(compareBy { it.length })
+    val longestString = strings.maxWithOrNull(compareBy { it.length })
     println(longestString)
 
     /*

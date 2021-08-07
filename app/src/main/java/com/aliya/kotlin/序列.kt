@@ -17,21 +17,29 @@ package com.aliya.kotlin
  */
 
 fun main() {
-    /*
+    /**
      * 构造序列的方式
      */
 
-    // sequenceOf() 函数
+    /*
+     * 方式一：sequenceOf() 函数
+     */
     var numbersSequence = sequenceOf("four", "three", "two", "one")
     println(numbersSequence.toList())
     // 打印结果 [four, three, two, one]
 
-    // asSequence()
+
+    /*
+     * 方式二：asSequence()
+     */
     numbersSequence = listOf("one", "two", "three", "four").asSequence()
     println(numbersSequence.toList())
     // 打印结果 [one, two, three, four]
 
-    // 参数 seed 表示第一个元素
+
+    /*
+     * 方式三：generateSequence(seed) 参数 seed 表示第一个元素
+     */
     var oddNumbers = generateSequence(1) { it + 2 } // `it` 是上一个元素
     println(oddNumbers.take(5).toList()) // 取前五个元素
 
@@ -42,6 +50,9 @@ fun main() {
     println(oddNumbersLessThan10.toList())
 
 
+    /*
+     * 方式四：sequence block
+     */
     // 由组块
     oddNumbers = sequence {
         yield(1)
@@ -50,7 +61,8 @@ fun main() {
     }
     println(oddNumbers.take(10).toList())
 
-    // 对比区别, 参考日志打印
+
+    // 对比区别 Iterable、Sequence, 参考日志打印
     println("\nwordIterable\n")
     wordIterable()
     println("\nwordSequence\n")

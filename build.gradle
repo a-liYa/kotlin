@@ -1,9 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.10"
-    ext.kotlinx_version = "1.4.1"
+    ext.kotlin_version = "1.5.10"
+    ext.kotlinx_version = "1.5.1"
     repositories {
         apply from: "https://gitee.com/a_liYa/gradleconfig/raw/master/dependency/versions.gradle"
+        mavenCentral()
         addAliyunRepos(repositories)
         addRepos(repositories)
     }
@@ -15,6 +16,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         addAliyunRepos(repositories)
         addRepos(repositories)
     }

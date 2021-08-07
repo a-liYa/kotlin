@@ -9,14 +9,18 @@ import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * 异步流(Flow)
+ *
  * 挂起函数可以异步的返回单个值，但是流（Flow）可异步返回多个计算好的值
+ *
  * @author a_liYa
  * @date 2020/11/10 09:23.
  *
  */
 fun main() {
 
-    sequenceSimple().forEach { value -> println(value) }
+
+
+    sequenceSimple().forEach { value -> println("time: ${System.currentTimeMillis()} - value: $value")}
 
     printDivider("流的简单演示")
 
@@ -33,40 +37,40 @@ fun main() {
         flowSimple().collect { value -> println(value) }
     }
 
-    printDivider("流的执行顺序")
-
-    runBlocking<Unit> {
-        println("Calling simple function...")
-        val flow = flowCallingSimple()
-        println("Calling collect...")
-        flow.collect { value -> println(value) }
-        println("Calling collect again...")
-        flow.collect { value -> println(value) }
-    }
-
-    printDivider("流的取消")
-
-    runBlocking<Unit> {
-        withTimeoutOrNull(250) { // 在 250 毫秒后超时
-            flowCancelSimple().collect { value -> println(value) }
-        }
-        println("Done")
-    }
-
-    printDivider("流的构建器")
-
-    flowBuildSimple()
-
-    printDivider("过度流操作符")
-
-    flowOperatorSimple()
+//    printDivider("流的执行顺序")
+//
+//    runBlocking<Unit> {
+//        println("Calling simple function...")
+//        val flow = flowCallingSimple()
+//        println("Calling collect...")
+//        flow.collect { value -> println(value) }
+//        println("Calling collect again...")
+//        flow.collect { value -> println(value) }
+//    }
+//
+//    printDivider("流的取消")
+//
+//    runBlocking<Unit> {
+//        withTimeoutOrNull(250) { // 在 250 毫秒后超时
+//            flowCancelSimple().collect { value -> println(value) }
+//        }
+//        println("Done")
+//    }
+//
+//    printDivider("流的构建器")
+//
+//    flowBuildSimple()
+//
+//    printDivider("过度流操作符")
+//
+//    flowOperatorSimple()
 
     // 流的该属性称为 上下文保存
 }
 
 private fun sequenceSimple(): Sequence<Int> = sequence { // 序列构建器
     for (i in 1..3) {
-        Thread.sleep(100) // 假装我们正在计算
+        Thread.sleep(1000) // 假装我们正在计算
         yield(i) // 产生下一个值
     }
 }
@@ -76,7 +80,6 @@ private fun sequenceSimple(): Sequence<Int> = sequence { // 序列构建器
  *  -- 名为 flow 的 Flow 类型构建器函数
  *  -- flow { ... } 构建块中的代码可以挂起
  *  -- 函数 不再标有 suspend 修饰符。
- *  -- 流使用 emit 函数 发射 值
  *  -- 流使用 emit 函数 发射 值
  */
 private fun flowSimple(): Flow<Int> = flow { // flow 流构建器
@@ -89,6 +92,11 @@ private fun flowSimple(): Flow<Int> = flow { // flow 流构建器
 
 /**
  * Flow 是一种类似于序列的冷流，这段 flow 构建器中的代码直到流被收集的时候才运行
+ *
+ * 冷流：只有订阅者订阅时，才开始执行发射数据流的代码。并且冷流和订阅者只能是一对一的关系，当有多个不同的订阅者时，消息是重新完整发送的。
+ * 也就是说对冷流而言，有多个订阅者的时候，他们各自的事件是独立的。
+ *
+ * 热流：无论有没有订阅者订阅，事件始终都会发生。当热流有多个订阅者时，热流与订阅者们的关系是一对多的关系，可以与多个订阅者共享信息。
  */
 private fun flowCallingSimple(): Flow<Int> = flow {
     println("Flow started")
